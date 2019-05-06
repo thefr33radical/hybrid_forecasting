@@ -5,13 +5,8 @@ import numpy as np
 import io
 from statsmodels.tsa.seasonal import seasonal_decompose
 from matplotlib import pyplot as plt
-import keras
-from keras.layers import Dense
-from keras.models import Sequential
-from keras.optimizers import Adam
-from keras.callbacks import EarlyStopping
 from sklearn.metrics import r2_score,mean_squared_error as ms
-from sklearn.preprocessing import MinMaxScaler
+
 
 def ARIMA_(split_len):
 
@@ -26,24 +21,28 @@ def ARIMA_(split_len):
     residuals1 = pd.DataFrame(model1.resid)
     residuals1.plot()
     residuals1.plot(kind='kde')
-    plt.show()
+    #plt.show()
 
     print(residuals1.describe())
     print(model1.summary())
 
-    # one step forecast
-    y_test_pred = model1.forecast()
-    y_train_pred = model1.predict(start=0,end=split_len-1)
-    y_test_pred = model1.predict(start=split_len,end=288)
+    results_train =[]
+    results_pred =[]
+    #temp =model1.predict(start=0,end=1)
 
-    print("MSE Train :",ms(train_data,y_train_pred))
-    print("MSE Test :",ms(test_data,y_test_pred))
+    start_index = 0
+    end_index = start_index + 100
+    forecast = model1.predict(start=start_index, end=end_index)
+    print(forecast,train_data[:100])
+    # one step forecastvalue"
+   
 
-
+    #print("MSE Train :",ms(train_data,y_train_pred))
+    #print("MSE Test :",ms(test_data,y_test_pred))
     #print("The MSE score on the Train set is:\t{:0.3f}".format(ms(y_train, y_train_pred)))
     #print("The MSE score on the Test set is:\t{:0.3f}".format(ms(y_test, y_test_pred)))
 
 # 35 test
 ARIMA_(253)
 # 67 test
-ARIMA_(221)
+#ARIMA_(221)

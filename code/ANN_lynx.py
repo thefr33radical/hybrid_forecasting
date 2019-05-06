@@ -52,8 +52,10 @@ model_ann.compile(loss="mean_squared_error",optimizer="adam")
 early_stop = EarlyStopping(monitor ="loss",patience =25, verbose =1)
 model_ann.fit(x_train,y_train, epochs = 200, callbacks=[early_stop],batch_size=1,verbose=1,shuffle= False)
 
+
 y_test_pred = model_ann.predict(x_test)
-y_train_pred = model_ann.predict(x_train)
+y_train_pred = model_ann.predict(x_train[:1])
+print(y_train_pred,y_train)
 
 '''y_train=scaler.inverse_transform(y_train)
 y_train_pred=scaler.inverse_transform(y_train_pred)
@@ -61,5 +63,5 @@ y_test=scaler.inverse_transform(y_test)
 y_test_pred=scaler.inverse_transform(y_test_pred)
 print(len(y_train_pred),len(y_test_pred))
 '''
-print("The MSE score on the Train set is:\t{:0.3f}".format(ms(y_train, (y_train_pred))))
-print("The MSE score on the Test set is:\t{:0.3f}".format(ms(y_test,(y_test_pred))))
+#print("The MSE score on the Train set is:\t{:0.3f}".format(ms(y_train, (y_train_pred))))
+#print("The MSE score on the Test set is:\t{:0.3f}".format(ms(y_test,(y_test_pred))))
