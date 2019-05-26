@@ -27,11 +27,12 @@ data
 data = ts(data, frequency=1, start=c(1700,1),)
 plot(data)
 
-fit<-auto.arima(data, seasonal=FALSE)
+fit<- arima(data,order = c(9,0,0))
 # plot model, ACf and PACF plots
-tsdisplay(residuals(fit), lag.max=45, main='(1,1,1) Model Residuals')
+tsdisplay(residuals(fit), lag.max=45, main='(9,0,0) Model Residuals')
 # print output of the model
 fit
+summary(fit)
 
 fcast <- forecast(fit, h=32)
 # Plot the forecast model
