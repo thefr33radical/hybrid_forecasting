@@ -32,16 +32,20 @@ plot(predicted)
 
 # Compute residuals by ARIMA model
 train_predicted = predicted[[9]]
-train_predicted = c(window(train_predicted,end=1920))
+train_predicted = c(window(train_predicted,end=1989))
 
-test_predicted = predicted[[4]]
-test_predicted = c(window(test_predicted,end=1987))
+#test_predicted = predicted[[4]]
+#test_predicted = c(window(test_predicted,end=1987))
 
-arima_predicted = append(train_predicted,test_predicted)
+arima_predicted = train_predicted
 actual = c(window(data,start=1700,end=1987))
 output_arima = abs(arima_predicted-actual)
-residuals = output_arima
+residuals = c()
 
+for (i in output_arima){
+  residuals = c(output_arima,i)
+}
+residuals
 # Compute MSE for ARIMA model
 ## RMSE is 14.09? Not able to get the same by manual calc
 summary(fit)
@@ -50,8 +54,29 @@ summary(fit)
 print(" The MSE is ")
 print(mean((train_predicted-train_set)^2))
 
-print(" The MSE is ")
-print(mean((test_predicted-test_set)^2))
+## part 2 ANN
+
+#Convert data to Time series
+data2 = ts(residuals, frequency=1, start=c(1700,1),)
+plot(data2)
+
+# Split into train and test set
+train_set_ann = c(window(data2,end=1920))
+test_set_ann = c(window(data2,start=1921,end=1987))
+
+# Fit the model using NNTAR and predict 14 steps
+NNTAR = nnetar(data2,size =4,p=4,decay=0.5, maxit=150,scale.inputs=TRUE)
+plot(forecast(NNTAR,h=1))
+predicted_ann = forecast(NNTAR,h=1)
+predicted_ann
+
+train_predicted_ann = predicted_ann[[9]]
+length(train_predicted_ann)
+length(residuals)
+train_predicted_ann = c(window(train_predicted,end=1989))
+summary(NNTAR)
+mean((train_predicted_ann-train_set_ann)^2)
+
 
 
 

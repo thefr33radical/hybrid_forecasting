@@ -23,11 +23,37 @@ test_set
 
 fit<- arima(train_set,order = c(12,0,0))
 # plot model, ACf and PACF plots
-tsdisplay(residuals(fit), lag.max=45, main='(9,0,0) Model Residuals')
+tsdisplay(residuals(fit), lag.max=45, main='(12,0,0) Model Residuals')
 # print output of the model
 fit
 summary(fit)
 
+predicted = forecast(fit,h=14, level=c(95))
+plot(predicted)
+predicted
+test_set
+
+# Finde MSE
+pred= c()
+for ( i in predicted[[4]]){
+  print((i))
+  pred = c(pred,i)
+}
+
+pred
+test_set
+
+print(" The MSE is ")
+print(mean((pred-test_set)^2))
+
+# pass the result set to ANN
+result_set=c()
+for ( i in pred){
+  result_set = c(abs(pred-test_set),i)
+}
+
+
+#END------------------------------------AutoArima-------------------------------------------------
 fit2<-auto.arima(train_set, seasonal=FALSE)
 # plot model, ACf and PACF plots
 tsdisplay(residuals(fit2), lag.max=45, main='(1,1,1) Model Residuals')
