@@ -9,3 +9,4 @@
 * http://r-statistics.co/Time-Series-Analysis-With-R.html
 * https://medium.com/@josemarcialportilla/using-python-and-auto-arima-to-forecast-seasonal-time-series-90877adff03c
 * https://www.seanabu.com/2016/03/22/time-series-seasonal-ARIMA-model-in-python/
+* Exponential Smoothing : https://machinelearningmastery.com/exponential-smoothing-for-time-series-forecasting-in-python/
