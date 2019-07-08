@@ -1,5 +1,5 @@
 
-* Text Books - Forecasting: Principles and Practice https://otexts.com/fpp2/
+* <B> Text Books - Forecasting: Principles and Practice</B> https://otexts.com/fpp2/
 * https://towardsdatascience.com/basic-time-series-manipulation-with-pandas-4432afee64ea
 * https://chrisalbon.com/python/data_wrangling/pandas_time_series_basics/
 * https://towardsdatascience.com/time-series-in-python-exponential-smoothing-and-arima-processes-2c67f2a52788
@@ -9,4 +9,4 @@
 * http://r-statistics.co/Time-Series-Analysis-With-R.html
 * https://medium.com/@josemarcialportilla/using-python-and-auto-arima-to-forecast-seasonal-time-series-90877adff03c
 * https://www.seanabu.com/2016/03/22/time-series-seasonal-ARIMA-model-in-python/
-* Exponential Smoothing : https://machinelearningmastery.com/exponential-smoothing-for-time-series-forecasting-in-python/
+* <B> Exponential Smoothing : </B> https://machinelearningmastery.com/exponential-smoothing-for-time-series-forecasting-in-python/
